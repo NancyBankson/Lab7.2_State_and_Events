@@ -5,27 +5,32 @@ import type { TextInputProps } from './types';
 import { StatsDisplay } from './components/StatsDisplay/StatsDisplay';
 import { CharacterCounter } from './components/CharacterCounter/CharacterCounter';
 
+function calculateWords(displayText: string): number {
+  const words = displayText.trim().split(/\s+/);
+  return words.length;
+}
+
 function App() {
   const [text, setText] = useState("");
 
   const initialText: TextInputProps = {
-    onTextChange: (newText:string) => setText(newText),
+    onTextChange: (newText: string) => setText(newText),
     initialValue: "",
     placeholder: "Start typing your content here...",
   }
   const textStats1 = {
     characterCount: text.length,
-    wordCount: 0,
-    readingTime: 23
+    wordCount: calculateWords(text),
+    readingTime: Math.ceil(calculateWords(text) / 225)  // Words per minute used is 225
   }
   return (
     <>
       <TextInput
-        placeholder={initialText.placeholder}     
+        placeholder={initialText.placeholder}
         initialValue={text}
-      onTextChange={initialText.onTextChange}
+        onTextChange={initialText.onTextChange}
       />
-      <StatsDisplay 
+      <StatsDisplay
         stats={textStats1}
         showReadingTime={true}
       />
