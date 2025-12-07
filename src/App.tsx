@@ -6,8 +6,12 @@ import { StatsDisplay } from './components/StatsDisplay/StatsDisplay';
 import { CharacterCounter } from './components/CharacterCounter/CharacterCounter';
 
 function calculateWords(displayText: string): number {
-  const words = displayText.trim().split(/\s+/);
-  return words.length;
+  if (displayText.length === 0) {
+    return 0;
+  } else {
+    const words = displayText.trim().split(/\s+/);
+    return words.length;
+  }
 }
 
 function App() {
@@ -18,10 +22,17 @@ function App() {
     initialValue: "",
     placeholder: "Start typing your content here...",
   }
+  const readinTimeHours: number = Math.floor(Math.ceil(calculateWords(text) / 225) / 60);  // Words per minute used is 225
+  const readingTimeMunutesNum: number = (Math.ceil(calculateWords(text) / 225)) % 60;
+  let readingTimeMunutes: string = "";
+  if (readingTimeMunutesNum < 10) {
+    readingTimeMunutes = `0${readingTimeMunutesNum}`;
+  } else readingTimeMunutes = readingTimeMunutesNum.toString();
+
   const textStats1 = {
     characterCount: text.length,
     wordCount: calculateWords(text),
-    readingTime: Math.ceil(calculateWords(text) / 225)  // Words per minute used is 225
+    readingTime: `${readinTimeHours}:${readingTimeMunutes}`
   }
   return (
     <>
@@ -36,8 +47,8 @@ function App() {
       />
       <CharacterCounter
         minWords={25}
-        maxWords={100}
-        targetReadingTime={50}
+        maxWords={10000}
+        targetReadingTime={225}
       />
     </>
   )

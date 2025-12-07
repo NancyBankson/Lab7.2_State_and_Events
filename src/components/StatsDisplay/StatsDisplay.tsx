@@ -10,7 +10,7 @@ export function StatsDisplay({ stats, showReadingTime}: StatsDisplayProps) {
             </div>
             <div>
                 <p>Words</p>
-                <h3>{stats.wordCount}</h3>
+                <h3 id="word-count">{stats.wordCount}</h3>
             </div>
             <div>
                 <p>Reading Time</p>
