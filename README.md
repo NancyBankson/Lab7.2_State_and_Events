@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Lab 7.1 State and events
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+In this lab we created an interactive character and word counter in React.  The purpose of this assignment was to practice using the useState hook in React as well as event handling and component interaction.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+Activity Tasks
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Component Implementation:
 
-## Expanding the ESLint configuration
+- Implement each component according to its interface requirements.
+- Use useState to manage text input and statistics.
+- Implement event handlers for text changes.
+- Calculate statistics in real-time.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. State Management:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Track the current text input.
+- Calculate and update statistics when text changes.
+- Handle edge cases (empty input, very long text).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. User Interface:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Create a responsive layout.
+- Show visual feedback for statistics.
+- Implement progress indicators for word count goals.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+4. Component Communication:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Use callbacks to pass data between components.
+- Ensure proper prop typing.
+- Handle optional props appropriately.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tools
+
+- HTML
+- CSS
+- JavaScript
+- TypeScript
+- React
+- Vite
+
+## Reflection Questions
+
+1. How did you handle state updates when the text changed?
+
+In the App function in the App.tsx file, I added the useState hook.  On change, the setter function applied the changes to the text.
+
+2. What considerations did you make when calculating reading time?
+
+To calculate reading time, I divided the word count by 225.  In order to display the reading time into a 0:00 format, I calculated the hours by dividing by 60 and using Math.floor.  Then, I calculated the minutes by finding the remainder after dividing by 60.
+
+3. How did you ensure the UI remained responsive during rapid text input?
+
+I ensured the UI remained responsive by displaying the stats using calculations within the app function.  When the state changed, the calcuations were immediately updated.
+
+4. What challenges did you face when implementing the statistics calculations?
+
+The character count was easy to calculate.  It was simply the length of the text.  The word count was calculated using the trim and split methods.  The biggest challenge was displaying the minutes in the 0:00 format.  I changed the reading time variable to a string and then calculated the hours and minutes using Math.floor and modulus operator and converted it to a string using a template literal with the colon.
