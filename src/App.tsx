@@ -14,7 +14,7 @@ function App() {
     placeholder: "Start typing your content here...",
   }
   const textStats1 = {
-    characterCount: 5,
+    characterCount: text.length,
     wordCount: 0,
     readingTime: 23
   }
@@ -22,7 +22,7 @@ function App() {
     <>
       <TextInput
         placeholder={initialText.placeholder}     
-        initialValue={initialText.initialValue}
+        initialValue={text}
       onTextChange={initialText.onTextChange}
       />
       <StatsDisplay 

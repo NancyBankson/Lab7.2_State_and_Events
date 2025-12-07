@@ -9,8 +9,7 @@ export function TextInput({ onTextChange, placeholder, initialValue }: TextInput
 
 
     return (
-        <textarea id="text-area" onChange={handleTextChange} placeholder={placeholder} required>
-            {initialValue}
+        <textarea id="text-area" onChange={handleTextChange} placeholder={placeholder} defaultValue={initialValue} required>
         </textarea>
     )
 }
