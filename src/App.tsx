@@ -3,6 +3,7 @@ import './App.css'
 import { TextInput } from './components/TextInput/TextInput';
 import type { TextInputProps } from './types';
 import { StatsDisplay } from './components/StatsDisplay/StatsDisplay';
+import { CharacterCounter } from './components/CharacterCounter/CharacterCounter';
 
 function App() {
   const [text, setText] = useState("");
@@ -27,6 +28,11 @@ function App() {
       <StatsDisplay 
         stats={textStats1}
         showReadingTime={true}
+      />
+      <CharacterCounter
+        minWords={25}
+        maxWords={100}
+        targetReadingTime={50}
       />
     </>
   )
