@@ -39,6 +39,11 @@ function App() {
     wordCount: calculateWords(text),
     readingTime: `${readinTimeHours}:${readingTimeMinutes}`
   }
+
+  if (calculateWords(text) > 5000) {
+    alert("Maximum word count is 5,000"); 
+  }
+
   return (
     <>
       <TextInput
@@ -51,8 +56,8 @@ function App() {
         showReadingTime={true}
       />
       <CharacterCounter
-        minWords={25}
-        maxWords={10000}
+        minWords={0}
+        maxWords={5000}
         targetReadingTime={225}
       />
     </>
